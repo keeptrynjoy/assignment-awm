@@ -25,6 +25,26 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    @Transactional
+    public void updateItem(Long itemId, ItemDto itemDto){
+        Item item = findItem(itemId);
+
+        item.updateItem(itemDto);
+    }
+
+    @Transactional
+    public void deleteItem(Long itemId) {
+        Item item = findItem(itemId);
+
+
+    }
+
+    private Item findItem(Long itemId){
+        // TODO: 커스텀 예외로 변경하기
+        return itemRepository.findById(itemId)
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
     private void validateItemName(Item item){
         Optional<Item> byName = itemRepository.findByName(item.getName());
 

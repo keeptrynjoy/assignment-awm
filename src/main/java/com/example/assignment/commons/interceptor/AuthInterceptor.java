@@ -18,16 +18,12 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws AccessDeniedException {
-        String loginId = request.getParameter("id");
+        String loginId = request.getParameter("userId");
 
         HandlerMethod handlerMethod = (HandlerMethod) handler;
 
         Auth auth = handlerMethod.getMethodAnnotation(Auth.class);
 
-        if(auth == null){
-            return true;
-        }
-
-        return authService.isAuthorized(loginId, auth);
+        return Objects.isNull(auth) || authService.isAuthorized(loginId, auth);
     }
 }
