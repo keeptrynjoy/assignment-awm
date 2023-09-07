@@ -2,14 +2,16 @@ package com.example.assignment.domain;
 
 import com.example.assignment.commons.support.BaseTimeEntity;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
 public class Coupon extends BaseTimeEntity {
 
     @Id
@@ -23,8 +25,9 @@ public class Coupon extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private CouponStatus status;
 
-    @OneToMany(mappedBy = "coupon", cascade = CascadeType.ALL)
-    private List<CouponAppliedItem> couponAppliedItems = new ArrayList<>();
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "coupon_applied_id")
+    private CouponAppliedItem couponAppliedItem;
 
     @OneToMany(mappedBy = "coupon")
     private List<CouponHistory> couponHistories = new ArrayList<>();

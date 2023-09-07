@@ -2,12 +2,14 @@ package com.example.assignment.domain;
 
 import com.example.assignment.commons.support.BaseTimeEntity;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
 public class CouponHistory extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,4 +27,7 @@ public class CouponHistory extends BaseTimeEntity {
     @JoinColumn(name = "coupon_id")
     private Coupon coupon;
 
+    public CouponDiscount getDiscount() {
+        return coupon.getCouponDiscount();
+    }
 }

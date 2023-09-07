@@ -17,7 +17,6 @@ public class CouponAppliedItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "coupon_id")
+    @OneToOne(fetch = FetchType.LAZY)
     private Coupon coupon;
 }

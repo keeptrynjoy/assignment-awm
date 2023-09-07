@@ -1,9 +1,12 @@
 package com.example.assignment.domain;
 
+import lombok.Getter;
+
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
+@Getter
 @Embeddable
 public class CouponDiscount {
     @Enumerated(EnumType.STRING)

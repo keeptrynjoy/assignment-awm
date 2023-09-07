@@ -1,5 +1,21 @@
 package com.example.assignment.domain;
 
+import java.util.function.BiFunction;
+
 public enum DiscountMethod {
-    PERCENTAGE, FIXED_AMOUNT
+    PERCENTAGE((targetAmount, discountVal)->
+            (int)((double) targetAmount / (double) discountVal * 100.0)),
+    FIXED_AMOUNT((targetAmount, discountVal)->
+            targetAmount - discountVal);
+
+    private final BiFunction<Integer, Integer, Integer> expression;
+
+    DiscountMethod(BiFunction<Integer, Integer, Integer> expression){
+        this.expression = expression;
+    }
+
+    public int calculate(int targetAmount, int discountVal){
+        return expression.apply(targetAmount,discountVal);
+    }
+
 }

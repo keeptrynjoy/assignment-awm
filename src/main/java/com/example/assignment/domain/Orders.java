@@ -2,6 +2,7 @@ package com.example.assignment.domain;
 
 import com.example.assignment.commons.support.BaseTimeEntity;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,8 +10,9 @@ import java.util.List;
 
 import static javax.persistence.FetchType.LAZY;
 
-@Entity
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Entity
 public class Orders extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,5 +29,11 @@ public class Orders extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
+
+    public int getTotalItemAmount(){
+        return orderItems.stream()
+                .mapToInt(OrderItem::getTotalPrice)
+                .sum();
+    }
 
 }
