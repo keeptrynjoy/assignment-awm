@@ -27,7 +27,17 @@ public class CouponHistory extends BaseTimeEntity {
     @JoinColumn(name = "coupon_id")
     private Coupon coupon;
 
-    public CouponDiscount getDiscount() {
-        return coupon.getCouponDiscount();
+    public void validUsableState(){
+        switch (status){
+            case USED:
+                throw new IllegalArgumentException("사용된 쿠폰입니다.");
+            case UNUSABLE:
+                throw new IllegalArgumentException("사용이 불가능한 쿠폰입니다.");
+
+        }
+    }
+
+    public Item getItemByCoupon(){
+        return coupon.getCouponAppliedItem().getItem();
     }
 }

@@ -36,4 +36,14 @@ public class Orders extends BaseTimeEntity {
                 .sum();
     }
 
+    public int getOrderAmountOfItem(Item item){
+        OrderItem resultItem = orderItems.stream()
+                .filter(orderItem ->
+                        orderItem.getItem().equals(item))
+                .findAny()
+                .orElseThrow(IllegalArgumentException::new);
+
+        return resultItem.getTotalPrice();
+    }
+
 }

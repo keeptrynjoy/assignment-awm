@@ -4,6 +4,8 @@ import com.example.assignment.commons.support.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -19,12 +21,18 @@ public class Coupon extends BaseTimeEntity {
     @Column(name = "coupon_id")
     private Long id;
 
-    @Embedded
-    private CouponDiscount couponDiscount;
+    @Enumerated(EnumType.STRING)
+    private DiscountMethod method;
+
+    private int discountVal;
+
+    @Enumerated(EnumType.STRING)
+    private DiscountRange range;
 
     @Enumerated(EnumType.STRING)
     private CouponStatus status;
 
+    @NotFound(action = NotFoundAction.IGNORE)
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "coupon_applied_id")
     private CouponAppliedItem couponAppliedItem;

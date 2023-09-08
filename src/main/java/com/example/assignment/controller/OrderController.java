@@ -1,9 +1,15 @@
 package com.example.assignment.controller;
 
+import com.example.assignment.commons.config.interceptor.Auth;
+import com.example.assignment.domain.UserRole;
+import com.example.assignment.service.OrderDto;
 import com.example.assignment.service.OrderService;
+import com.example.assignment.service.PaymentResultDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping("/order")
 @RequiredArgsConstructor
@@ -12,27 +18,34 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    // 주문 조회
-//    @GetMapping("/{id}")
-//    public ResponseEntity<OrderResponseDto> orderInfo(@PathVariable(value = "id") Integer orderId){
-//
-//    }
+    @Auth(role = UserRole.STANDARD)
+    @GetMapping("/info")
+    public ResponseEntity<List<OrderDto>> readOrder(@RequestParam String loginId){
 
-//    // 주문 총 금액 계산
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Integer> calculateTotalAmount(@PathVariable(value = "id") Long orderId){
-//
-//        final int totalOrderAmount = orderService.getTotalOrderAmount(orderId);
-//
-//        return ResponseEntity.ok(totalOrderAmount);
-//    }
+        List<OrderDto> orderDtoList = orderService.findAllOrder(loginId);
+
+        return ResponseEntity.ok(orderDtoList);
+    }
+
+
+    // 주문 총 금액 계산
+    @Auth(role = UserRole.STANDARD)
+    @GetMapping("/{id}/amount")
+    public ResponseEntity<Integer> calculateTotalAmount(@PathVariable(value = "id") Long orderId){
+
+        final int totalOrderAmount = orderService.getTotalOrderAmount(orderId);
+
+        return ResponseEntity.ok(totalOrderAmount);
+    }
 
     // 주문 결제 금액 계산
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Integer> calculatePaymentAmount(@PathVariable(value = "id") Long orderId,
-//                                                        @RequestParam(required = false) Long coupon){
-//
-//        final int totalPaymentAmount = orderService.getPaymentAmount(orderId, coupon);
-//        return ResponseEntity.ok();
-//    }
+    @Auth(role = UserRole.STANDARD)
+    @GetMapping("/{id}/payment")
+    public ResponseEntity<PaymentResultDto> calculatePaymentCost(@PathVariable(value = "id") Long orderId,
+                                                                 @RequestParam(required = false) Long couponId){
+
+        final PaymentResultDto totalPaymentAmount = orderService.getPaymentCost(orderId, couponId);
+
+        return ResponseEntity.ok(totalPaymentAmount);
+    }
 }
