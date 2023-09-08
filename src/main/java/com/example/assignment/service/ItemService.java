@@ -3,6 +3,9 @@ package com.example.assignment.service;
 import com.example.assignment.domain.Item;
 import com.example.assignment.domain.ItemHistory;
 import com.example.assignment.domain.ItemStatus;
+import com.example.assignment.dto.ItemDto;
+import com.example.assignment.dto.ItemHistoryResponseDto;
+import com.example.assignment.dto.ItemHistoryDto;
 import com.example.assignment.repository.ItemHistoryRepository;
 import com.example.assignment.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -68,7 +71,7 @@ public class ItemService {
         return itemDtoList;
     }
 
-    public ItemHistoryResponse findItemHistoryList(Long itemId, int page){
+    public ItemHistoryResponseDto findItemHistoryList(Long itemId, int page){
 
         PageRequest pageRequest = PageRequest.of(page, 10);
         Page<ItemHistory> itemHistoryPage;
@@ -84,7 +87,7 @@ public class ItemService {
                         .collect(Collectors.toList());
 
 
-        return ItemHistoryResponse
+        return ItemHistoryResponseDto
                 .toResponse(itemHistoryDtoList, itemHistoryPage.getNumber(), itemHistoryPage.getTotalPages());
     }
 

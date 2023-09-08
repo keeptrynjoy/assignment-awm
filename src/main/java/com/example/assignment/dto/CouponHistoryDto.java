@@ -1,8 +1,7 @@
-package com.example.assignment.service;
+package com.example.assignment.dto;
 
 import com.example.assignment.domain.CouponHistory;
 import com.example.assignment.domain.CouponHistoryStatus;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 

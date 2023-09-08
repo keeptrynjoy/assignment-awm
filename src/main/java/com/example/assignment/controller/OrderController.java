@@ -2,9 +2,9 @@ package com.example.assignment.controller;
 
 import com.example.assignment.commons.config.interceptor.Auth;
 import com.example.assignment.domain.UserRole;
-import com.example.assignment.service.OrderDto;
+import com.example.assignment.dto.OrderDto;
 import com.example.assignment.service.OrderService;
-import com.example.assignment.service.PaymentResultDto;
+import com.example.assignment.dto.PaymentResultDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

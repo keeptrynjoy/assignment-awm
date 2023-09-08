@@ -1,4 +1,4 @@
-package com.example.assignment.service;
+package com.example.assignment.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

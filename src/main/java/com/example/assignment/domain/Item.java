@@ -1,9 +1,8 @@
 package com.example.assignment.domain;
 
 import com.example.assignment.commons.support.BaseTimeEntity;
-import com.example.assignment.service.ItemDto;
+import com.example.assignment.dto.ItemDto;
 import lombok.*;
-import org.hibernate.envers.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

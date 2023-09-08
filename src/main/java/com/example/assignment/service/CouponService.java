@@ -3,6 +3,8 @@ package com.example.assignment.service;
 import com.example.assignment.domain.Coupon;
 import com.example.assignment.domain.CouponHistory;
 import com.example.assignment.domain.Users;
+import com.example.assignment.dto.CouponDto;
+import com.example.assignment.dto.CouponHistoryDto;
 import com.example.assignment.repository.CouponHistoryRepository;
 import com.example.assignment.repository.UserRepository;
 import lombok.RequiredArgsConstructor;

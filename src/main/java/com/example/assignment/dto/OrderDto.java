@@ -1,4 +1,4 @@
-package com.example.assignment.service;
+package com.example.assignment.dto;
 
 import com.example.assignment.domain.OrderStatus;
 import com.example.assignment.domain.Orders;

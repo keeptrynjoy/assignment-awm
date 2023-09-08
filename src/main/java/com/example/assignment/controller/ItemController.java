@@ -2,8 +2,8 @@ package com.example.assignment.controller;
 
 import com.example.assignment.commons.config.interceptor.Auth;
 import com.example.assignment.domain.UserRole;
-import com.example.assignment.service.ItemDto;
-import com.example.assignment.service.ItemHistoryResponse;
+import com.example.assignment.dto.ItemDto;
+import com.example.assignment.dto.ItemHistoryResponseDto;
 import com.example.assignment.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -59,11 +59,11 @@ public class ItemController {
 
     @Auth(role = UserRole.MART)
     @GetMapping("/history/{pageNum}")
-    public ResponseEntity<ItemHistoryResponse> readItemPriceHistory(
+    public ResponseEntity<ItemHistoryResponseDto> readItemPriceHistory(
             @PathVariable(value = "pageNum") int pageNum,
             @RequestParam(required = false) Long itemId){
 
-        ItemHistoryResponse itemHistory = itemService.findItemHistoryList(itemId, pageNum);
+        ItemHistoryResponseDto itemHistory = itemService.findItemHistoryList(itemId, pageNum);
 
         return ResponseEntity.ok(itemHistory);
     }

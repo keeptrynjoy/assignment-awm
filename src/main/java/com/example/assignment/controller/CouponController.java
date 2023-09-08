@@ -2,7 +2,7 @@ package com.example.assignment.controller;
 
 import com.example.assignment.commons.config.interceptor.Auth;
 import com.example.assignment.domain.UserRole;
-import com.example.assignment.service.CouponHistoryDto;
+import com.example.assignment.dto.CouponHistoryDto;
 import com.example.assignment.service.CouponService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
