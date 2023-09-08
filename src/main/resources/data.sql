@@ -1,0 +1,12 @@
+INSERT INTO item values (0, now(), now(), '사과', 1000, 'NORMAL', 100);
+INSERT INTO item values (1, now(), now(), '바나나', 800, 'NORMAL', 50);
+INSERT INTO users values (0, now(), now(), 'mart1', 'MART');
+INSERT INTO users values (1, now(), now(), 'member2', 'STANDARD');
+INSERT INTO orders values (0, now(), now(), 3000, 'PENDING', 1);
+INSERT INTO order_item values (0, 1000, 10, 0, 0);
+INSERT INTO order_item values (1, 800, 10, 1, 0);
+INSERT INTO coupon values (0, now(), now(), 30, 'PERCENTAGE', 'ALL_ITEM','NORMAL',null);
+INSERT INTO coupon values (1, now(), now(), 30, 'PERCENTAGE', 'INDIVIDUAL_ITEM','NORMAL',0);
+INSERT INTO coupon_history values (0, now(), now(), 'UNUSED', 0, 1);
+INSERT INTO coupon_history values (1, now(), now(), 'UNUSED', 1, 1);
+INSERT INTO coupon_applied_item values (0, 1, 0);
