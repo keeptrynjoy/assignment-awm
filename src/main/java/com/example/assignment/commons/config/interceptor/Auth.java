@@ -1,4 +1,4 @@
-package com.example.assignment.commons.interceptor;
+package com.example.assignment.commons.config.interceptor;
 
 import com.example.assignment.domain.UserRole;
 
@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Auth {
-     UserRole role() default UserRole.STANDARD;
+     UserRole role() default UserRole.ALL;
 }

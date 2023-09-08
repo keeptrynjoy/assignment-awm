@@ -1,4 +1,4 @@
-package com.example.assignment.commons.interceptor;
+package com.example.assignment.commons.config.interceptor;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.nio.file.AccessDeniedException;
-import java.util.Objects;
 
 @RequiredArgsConstructor
 @Component
@@ -18,12 +17,13 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws AccessDeniedException {
-        String loginId = request.getParameter("userId");
 
         HandlerMethod handlerMethod = (HandlerMethod) handler;
 
         Auth auth = handlerMethod.getMethodAnnotation(Auth.class);
 
-        return Objects.isNull(auth) || authService.isAuthorized(loginId, auth);
+        String loginId = request.getParameter("loginId");
+
+        return  authService.isAuthorized(loginId, auth);
     }
 }
