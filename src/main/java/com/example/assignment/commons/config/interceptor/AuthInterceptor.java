@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.nio.file.AccessDeniedException;
 
 @RequiredArgsConstructor
-@Component
+//@Component
 public class AuthInterceptor implements HandlerInterceptor {
 
     private final AuthService authService;

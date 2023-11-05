@@ -2,13 +2,13 @@ spring:
   profiles:
     active: local
 
-  web:
-    resources:
-      add-mappings: false
+#  web:
+#    resources:
+#      add-mappings: false
 
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:testdb;
+    url: jdbc:h2:mem:testdb
     username: sa
     password:
 
@@ -26,6 +26,7 @@ spring:
       mode: always
       encoding: utf-8
       platform: h2
+
 logging.level:
   org:
     hibernate:

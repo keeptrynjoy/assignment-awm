@@ -5,6 +5,7 @@ import com.example.assignment.domain.Orders;
 import lombok.Getter;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class OrderDto {
 
     private Long id;
 
-    @NotNull
+    @NotBlank
     private OrderStatus status;
     @Min(0)
     private int deliveryCost;

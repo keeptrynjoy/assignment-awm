@@ -12,3 +12,4 @@ import java.lang.annotation.Target;
 public @interface Auth {
      UserRole role() default UserRole.ALL;
 }
+
